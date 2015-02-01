@@ -1,44 +1,72 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using RSS_Generator.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Xml;
-using System.Xml.Linq;
-
-using HtmlAgilityPack;
-using System.IO;
 using System.Web.Http;
+using System.Xml.Linq;
 
 namespace RSS_Generator.Controllers
 {
-
     public class ArticleController : ApiController
     {
         public HttpResponseMessage Get()
         {
-            return GetPage();
+            return GetPage("Hardcore Gaming 101", "Random articles from the hardcore gaming 101 website");
         }
 
-        private static HttpResponseMessage GetPage()
+        private static List<ItemModel> GetArticles()
         {
-            var htmlWeb = new HtmlWeb();
-            var doc = htmlWeb.Load("http://www.hardcoregaming101.net/ninjagaiden/ninjagaiden.htm");
-            doc.OptionOutputAsXml = true;
-            doc.OptionFixNestedTags = true;
-            doc.OptionAutoCloseOnEnd = true;
+            var uri = new Uri("http://www.hardcoregaming101.net/alpha.htm");
+            var document = new HtmlWeb().Load(uri.ToString());
+            var model = new List<ItemModel>();
+
+            var catalogs = document.DocumentNode.Descendants().Where(
+                node => node.Attributes.Contains("class") 
+                && node.Attributes["class"].Value.Contains("catalog"));
+
+            foreach (var catalog in catalogs)
+            {
+                foreach (var link in catalog.Descendants().Where(node => node.Name.Equals("a")))
+                {
+                    if (!string.IsNullOrEmpty(link.InnerText) && link.Attributes["href"] != null)
+                    {
+                        model.Add(new ItemModel()
+                        {
+                            Title = link.InnerText, 
+                            Description = link.Attributes["title"] != null ? link.Attributes["title"].Value : link.InnerText,
+                            Link = new Uri(uri + "/" + link.Attributes["href"].Value)
+                        });                       
+                    }
+                }
+            }
+            return model;
+        }
+
+        private static HttpResponseMessage GetPage(string title, string description)
+        {
+            var model = new ArticleModel
+            {
+                Title = title,
+                Description = description,
+                Items = GetArticles()
+            };
 
             var xml = new XDocument(
                 new XDeclaration("1.0", "UTF-8", "yes"),
-                    new XElement("rss",
+                new XElement("rss",
                     new XAttribute("version", "2.0"),
                     new XElement("channel",
-                    new XElement("title", "Randomly generated rss feed"),
-                    new XElement("description", "Randomly generated rss feed"),
-                    new XElement("item",
-                        new XElement("title", "first entry"),
-                        new XElement("description", "Randomly generated rss feed"),
-                        new XElement("link", "http://google.com"),
-                        new XElement("guid", "Randomly generated rss feed", new XAttribute("isPermaLink", "false"),
-                        new XElement("pubdate", "Sun, 06 Sep 2009 16:20:00 +0000"))))));
+                        new XElement("title", model.Title),
+                        new XElement("description", model.Description),
+                        from element in model.Items
+                        select new XElement("item",
+                            new XElement("title", element.Title),
+                            new XElement("description", element.Description),
+                            new XElement("link", element.Link)))));
 
             var writer = new StringWriter();
             xml.Save(writer);
