@@ -15,7 +15,19 @@ namespace RSS_Generator.Controllers
     {
         public HttpResponseMessage Get()
         {
-            return GetPage("Hardcore Gaming 101", "Random articles from the hardcore gaming 101 website");
+            var feed = GetPage("Hardcore Gaming 101", "Random articles from the hardcore gaming 101 website");
+            WriteFeed("hardcoregaming101.xml", feed);
+            return feed;
+        }
+
+        private static void WriteFeed(string fileName, HttpResponseMessage content)
+        {
+            var contentString = content.Content.ReadAsStringAsync();
+
+            // Write the string to a file.
+            var writer = new StreamWriter("C:\\" + fileName);
+            writer.Write(contentString.Result);
+            writer.Close();
         }
 
         private static List<ItemModel> GetArticles()
@@ -25,7 +37,7 @@ namespace RSS_Generator.Controllers
             var model = new List<ItemModel>();
 
             var catalogs = document.DocumentNode.Descendants().Where(
-                node => node.Attributes.Contains("class") 
+                node => node.Attributes.Contains("class")
                 && node.Attributes["class"].Value.Contains("catalog"));
 
             foreach (var catalog in catalogs)
@@ -36,10 +48,10 @@ namespace RSS_Generator.Controllers
                     {
                         model.Add(new ItemModel()
                         {
-                            Title = link.InnerText, 
+                            Title = link.InnerText,
                             Description = link.Attributes["title"] != null ? link.Attributes["title"].Value : link.InnerText,
                             Link = new Uri(uri + "/" + link.Attributes["href"].Value)
-                        });                       
+                        });
                     }
                 }
             }
