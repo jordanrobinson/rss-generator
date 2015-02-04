@@ -74,7 +74,7 @@ namespace RSS_Generator.Controllers
                     new XElement("channel",
                         new XElement("title", model.Title),
                         new XElement("description", model.Description),
-                        from element in model.Items
+                        from element in model.Items.OrderBy(x => Guid.NewGuid()).Take(3) //grab 3 randomly selected
                         select new XElement("item",
                             new XElement("title", element.Title),
                             new XElement("description", element.Description),
