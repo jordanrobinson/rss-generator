@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
-namespace RSS_Generator
+namespace RSSGenerator
 {
     public static class WebApiConfig
     {

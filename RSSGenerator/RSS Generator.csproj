@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RSS_Generator</RootNamespace>
-    <AssemblyName>RSS Generator</AssemblyName>
+    <RootNamespace>RSSGenerator</RootNamespace>
+    <AssemblyName>RSSGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -145,6 +145,7 @@
     </Compile>
     <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\ItemModel.cs" />
+    <Compile Include="Models\SourcesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,20 +1,26 @@
-﻿using HtmlAgilityPack;
-using RSS_Generator.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using System.Xml.Linq;
+using HtmlAgilityPack;
+using RSSGenerator.Models;
 
-namespace RSS_Generator.Controllers
+namespace RSSGenerator.Controllers
 {
     public class ArticleController : ApiController
     {
         public HttpResponseMessage Get()
         {
+            var sources = ConfigurationManager.AppSettings["sources"].Split(';');
+
+            sources = sources;
+
+
             var feed = GetPage("Hardcore Gaming 101", "Random articles from the hardcore gaming 101 website");
             WriteFeed("hardcoregaming101.xml", feed);
             return feed;

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RSS_Generator.Models
+namespace RSSGenerator.Models
 {
     public class ArticleModel
     {
