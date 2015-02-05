@@ -144,12 +144,31 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\ConfigurationSectionDesigner1.csd.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfigurationSectionDesigner1.csd</DependentUpon>
+    </Compile>
     <Compile Include="Models\ItemModel.cs" />
     <Compile Include="Models\SourcesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Models\ConfigurationSectionDesigner1.csd">
+      <Generator>CsdFileGenerator</Generator>
+      <LastGenOutput>ConfigurationSectionDesigner1.csd.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ConfigurationSectionDesigner1.csd.config">
+      <DependentUpon>ConfigurationSectionDesigner1.csd</DependentUpon>
+    </Content>
+    <Content Include="Models\ConfigurationSectionDesigner1.csd.diagram">
+      <DependentUpon>ConfigurationSectionDesigner1.csd</DependentUpon>
+    </Content>
+    <None Include="Models\ConfigurationSectionDesigner1.csd.xsd">
+      <DependentUpon>ConfigurationSectionDesigner1.csd</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -160,6 +179,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Feeds\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

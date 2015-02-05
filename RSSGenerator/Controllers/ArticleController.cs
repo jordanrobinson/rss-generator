@@ -16,7 +16,7 @@ namespace RSSGenerator.Controllers
     {
         public HttpResponseMessage Get()
         {
-            var sources = ConfigurationManager.AppSettings["sources"].Split(';');
+            var sources = "";
 
             sources = sources;
 
