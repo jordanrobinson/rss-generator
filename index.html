@@ -4,7 +4,7 @@
 <style>
 @media embossed {
   body {
-    background-color: #0f0;
+    background-color: #010;
   }
 }
 @media print and (width: 1024px) , print and (height: 768px) {
@@ -14,13 +14,13 @@
 }
 @media print {
     body {
-        background-color: #f00;
+        background-color: #100;
     }
 }
 
 @media screen and (width: 1024px) , screen and (height: 768px) {
     body {
-        background-color: #00f;
+        background-color: #001;
     }
 }
 
@@ -62,7 +62,7 @@
 
 document.getElementsByTagName('p')[0].innerHTML = size.width + ' ' + size.height;
 document.getElementsByTagName('p')[1].innerHTML = location.search.split('pdf=')[1];
-document.getElementsByTagName('p')[3].innerHTML = navigator.userAgent;
+document.getElementsByTagName('p')[2].innerHTML = navigator.userAgent;
   </script>
 </body>
 </html>
