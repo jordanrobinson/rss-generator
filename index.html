@@ -7,7 +7,7 @@
     background-color: chartreuse;
   }
 }
-@media print and (width: 1024px) , and (height: 768px) {
+@media print and (width: 1024px) , print and (height: 768px) {
     body {
         background-color: chartreuse;
     }
@@ -17,6 +17,13 @@
         background-color: #f00;
     }
 }
+
+@media screen and (width: 1024px) , screen and (height: 768px) {
+    body {
+        background-color: #00f;
+    }
+}
+
 </style>
   <meta charset="utf-8">
   <title>JS Bin</title>
@@ -30,7 +37,7 @@
   <a href="http://pdfmyurl.com/saveaspdf?css_media_type=embossed">pdf link to pdfmyurl</a>
   <a href="http://www.web2pdfconvert.com/convert">pdf link for web2pdf</a>
   <a href="http://www.htm2pdf.co.uk/display">pdf link for htm2pdf</a>
-  <a href="?pdf=true//pdfcrowd.com/url_to_pdf/">Save to PDF</a>
+  <a href="//pdfcrowd.com/url_to_pdf/?pdf=true">Save to PDF</a>
     <script>
     var size = {
   width: window.innerWidth || document.body.clientWidth,
