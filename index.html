@@ -60,9 +60,9 @@
   height: window.innerHeight || document.body.clientHeight
 };
 
-document.getElementsByTagName('p')[0].innerHTML = size.width + ' ' + size.height;
-document.getElementsByTagName('p')[1].innerHTML = location.search.split('pdf=')[1];
-document.getElementsByTagName('p')[2].innerHTML = navigator.userAgent;
+document.getElementsByTagName('p')[0].innerHTML = 'width: ' + size.width + ' height: ' + size.height;
+document.getElementsByTagName('p')[1].innerHTML = 'parameters: ' + location.search.split('pdf=')[1];
+document.getElementsByTagName('p')[2].innerHTML = 'userAgent: ' + navigator.userAgent;
   </script>
 </body>
 </html>
