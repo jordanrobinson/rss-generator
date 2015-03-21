@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  
+  <p id="dimensions">
+    placeholder
+  </p>
+
+    <script>
+    var size = {
+  width: window.innerWidth || document.body.clientWidth,
+  height: window.innerHeight || document.body.clientHeight
+};
+
+console.log(size.width);
+console.log(size.height);
+
+document.getElementsByTagName('p')[0].innerHTML = size.width + ' ' + size.height;
+  </script>
+</body>
+</html>
+
