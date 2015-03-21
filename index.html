@@ -30,6 +30,7 @@
   <a href="http://pdfmyurl.com/saveaspdf?css_media_type=embossed">pdf link to pdfmyurl</a>
   <a href="http://www.web2pdfconvert.com/convert">pdf link for web2pdf</a>
   <a href="http://www.htm2pdf.co.uk/display">pdf link for htm2pdf</a>
+  <a href="?pdf=true//pdfcrowd.com/url_to_pdf/">Save to PDF</a>
     <script>
     var size = {
   width: window.innerWidth || document.body.clientWidth,
@@ -39,7 +40,7 @@
 console.log(size.width);
 console.log(size.height);
 
-document.getElementsByTagName('p')[0].innerHTML = size.width + ' ' + size.height;
+document.getElementsByTagName('p')[0].innerHTML = size.width + ' ' + size.height + ' ' location.search.split('pdf=')[1];
   </script>
 </body>
 </html>
