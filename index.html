@@ -67,7 +67,12 @@
 document.getElementsByTagName('p')[0].innerHTML = 'width: ' + size.width + ' height: ' + size.height;
 document.getElementsByTagName('p')[1].innerHTML = 'parameters: ' + location.search.split('pdf=')[1];
 document.getElementsByTagName('p')[2].innerHTML = 'userAgent: ' + navigator.userAgent;
-document.getElementsByTagName('p')[3].innerHTML = req.getAllResponseHeaders().toLowerCase();
+var req = new XMLHttpRequest();
+req.open('GET', document.location, false);
+req.send(null);
+var headers = req.getAllResponseHeaders().toLowerCase();
+
+document.getElementsByTagName('p')[3].innerHTML = headers;
   </script>
 </body>
 </html>
